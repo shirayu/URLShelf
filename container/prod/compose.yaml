@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: container/prod/Dockerfile
+    image: urlshelf:latest
+    container_name: urlshelf
+    hostname: urlshelf
+    restart: unless-stopped
+    ports:
+      - "${URLSHELF_PORT:-9432}:9432"
+    volumes:
+      - urlshelf-data:/data
+    environment:
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test:
+        ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://localhost:9432/')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    init: true
+
+volumes:
+  urlshelf-data:
+    driver: local

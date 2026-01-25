@@ -1,0 +1,34 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>URLShelf Logo</title>
+  <desc>Cute bookshelf with colorful books.</desc>
+
+  <!-- Bookshelf body -->
+  <rect x="80" y="140" width="864" height="740" rx="72" fill="#FFE0B2"/>
+  <rect x="120" y="180" width="784" height="660" rx="56" fill="#FFF7EC"/>
+  <rect x="120" y="180" width="40" height="660" rx="20" fill="#F0C593"/>
+  <rect x="864" y="180" width="40" height="660" rx="20" fill="#F0C593"/>
+
+  <!-- Shelves -->
+  <rect x="140" y="300" width="744" height="28" rx="14" fill="#E8A66A"/>
+  <rect x="140" y="480" width="744" height="28" rx="14" fill="#E8A66A"/>
+  <rect x="140" y="660" width="744" height="28" rx="14" fill="#E8A66A"/>
+
+  <!-- Books on shelves -->
+  <rect x="170" y="330" width="120" height="120" rx="26" fill="#FF9DBB"/>
+  <rect x="305" y="330" width="150" height="120" rx="26" fill="#9FD8FF"/>
+  <rect x="470" y="330" width="110" height="120" rx="26" fill="#B7F0C3"/>
+  <rect x="595" y="330" width="170" height="120" rx="26" fill="#FFD8A8"/>
+  <rect x="780" y="330" width="70" height="120" rx="22" fill="#CDB4DB"/>
+
+  <rect x="170" y="510" width="170" height="120" rx="26" fill="#FFD6A5"/>
+  <rect x="355" y="510" width="130" height="120" rx="26" fill="#A0C4FF"/>
+  <rect x="500" y="510" width="200" height="120" rx="26" fill="#CAFFBF"/>
+  <rect x="715" y="510" width="135" height="120" rx="26" fill="#FFC6FF"/>
+
+  <rect x="190" y="690" width="150" height="120" rx="26" fill="#FFB5C8"/>
+  <rect x="355" y="690" width="120" height="120" rx="26" fill="#BDE0FE"/>
+  <rect x="490" y="690" width="190" height="120" rx="26" fill="#CDEAC0"/>
+  <rect x="695" y="690" width="165" height="120" rx="26" fill="#FFD1B3"/>
+
+  <!-- Link badge removed per request -->
+</svg>

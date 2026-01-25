@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>URLShelf | Edit Page</title>
+    <link rel="icon" type="image/svg+xml" href="/static/logo.svg" />
     <style>
       :root {
         color-scheme: light;
@@ -39,6 +40,15 @@
         justify-content: space-between;
         gap: 12px 20px;
         margin-bottom: 24px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .logo {
+        width: 48px;
+        height: 48px;
       }
       h1 {
         font-family: "Playfair Display", "Noto Serif", serif;
@@ -165,9 +175,12 @@
   <body>
     <div class="page">
       <header>
-        <div>
-          <h1>Edit Page</h1>
-          <p>Update the URL, content, and format.</p>
+        <div class="brand">
+          <img class="logo" src="/static/logo.svg" alt="URLShelf logo" />
+          <div>
+            <h1>Edit Page</h1>
+            <p>Update the URL, content, and format.</p>
+          </div>
         </div>
         <div>
           <a class="btn btn-ghost" href="/manage">Back to Manage</a>

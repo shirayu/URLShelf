@@ -17,6 +17,7 @@ RUN python -m venv /opt/venv \
 # Copy app sources
 COPY app.py ./app.py
 COPY templates ./templates
+COPY assets ./assets
 
 # Create data dir and non-root user
 RUN useradd -ms /bin/bash appuser \

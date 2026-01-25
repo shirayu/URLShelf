@@ -52,7 +52,7 @@ ALLOWED_ATTRIBUTES = {
 }
 ALLOWED_PROTOCOLS = sorted({*bleach.sanitizer.ALLOWED_PROTOCOLS, "data"})
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="assets", static_url_path="/static")
 # Default DB path for WSGI servers (e.g., gunicorn). Can be overridden by env.
 app.config["DB_PATH"] = Path(os.getenv("URLSHELF_DB_PATH", str(DEFAULT_DB_PATH)))
 # Allow larger form payloads to avoid Werkzeug capacity errors.

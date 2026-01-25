@@ -280,3 +280,10 @@ def test_delete_nonexistent_page_redirects(tmp_path: Path):
     delete = client.post("/delete/https/example.com/missing", follow_redirects=False)
     assert delete.status_code == 302
     assert delete.headers.get("Location", "").endswith("/manage")
+
+
+def test_logo_svg_is_served(tmp_path: Path):
+    client = make_client(tmp_path)
+
+    response = client.get("/static/logo.svg")
+    assert response.status_code == 200

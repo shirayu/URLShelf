@@ -30,4 +30,4 @@ ENV PATH="/opt/venv/bin:$PATH" \
 
 EXPOSE 9432
 
-CMD ["python", "app.py", "--host", "0.0.0.0", "--port", "9432", "--db-path", "/data/db.sqlite3"]
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:9432", "app:app"]

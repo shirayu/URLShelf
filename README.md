@@ -42,9 +42,8 @@ Example (assuming default host/port):
 ## Notes
 
 - SQLite DB file: `./data/db.sqlite3` by default (configurable via `--db-path` or `DB_PATH`).
+- Markdown is converted to HTML and sanitized before rendering.
 
 ## License
 
 AGPL-3.0 license
-
-- Markdown is converted to HTML and sanitized before rendering.

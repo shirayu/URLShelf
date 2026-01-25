@@ -27,7 +27,8 @@ RUN useradd -ms /bin/bash appuser \
 USER appuser
 
 ENV PATH="/opt/venv/bin:$PATH" \
-    PYTHONUNBUFFERED=1
+    PYTHONUNBUFFERED=1 \
+    URLSHELF_DB_PATH=/data/db.sqlite3
 
 EXPOSE 9432
 

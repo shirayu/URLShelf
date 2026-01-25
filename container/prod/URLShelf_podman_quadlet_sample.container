@@ -10,6 +10,7 @@ ContainerName=urlshelf
 HostName=urlshelf
 PublishPort=9432:9432
 Volume=/opt/data/urlshelf:/data:Z
+Environment=URLSHELF_DB_PATH=/data/db.sqlite3
 UserNS=keep-id
 
 [Service]

@@ -43,7 +43,7 @@ tasks:
     vars:
       HOST: 0.0.0.0
       PORT: 9432
-      DB_PATH: ./data/db.sqlite3
+      URLSHELF_DB_PATH: ./data/db.sqlite3
     cmds:
       - task: build:install
-      - '{{.UV_RUN}} python app.py --host {{.HOST}} --port {{.PORT}} --db-path {{.DB_PATH}}'
+      - 'URLSHELF_DB_PATH={{.URLSHELF_DB_PATH}} {{.UV_RUN}} python app.py --host {{.HOST}} --port {{.PORT}}'

@@ -17,7 +17,7 @@ task serve HOST=127.0.0.1 PORT=9432
 Custom DB path:
 
 ```bash
-task serve DB_PATH=./data/db.sqlite3
+task serve URLSHELF_DB_PATH=./data/db.sqlite3
 ```
 
 Then open the host/port you configured to use the save form.
@@ -41,7 +41,7 @@ Example (assuming default host/port):
 
 ## Notes
 
-- SQLite DB file: `./data/db.sqlite3` by default (configurable via `--db-path` or `DB_PATH`).
+- SQLite DB file: `./data/db.sqlite3` by default (configurable via `--db-path` or `URLSHELF_DB_PATH`).
 - Markdown is converted to HTML and sanitized before rendering.
 
 ## License

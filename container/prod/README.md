@@ -64,6 +64,7 @@ The application will be available at:
 | Variable | Default | Description |
 | --- | --- | --- |
 | `URLSHELF_PORT` | `9432` | Port to expose the service on |
+| `URLSHELF_DB_PATH` | `/data/db.sqlite3` | SQLite DB file path |
 
 ### Data Persistence
 

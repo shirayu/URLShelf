@@ -13,6 +13,7 @@ services:
       - urlshelf-data:/data
     environment:
       - PYTHONUNBUFFERED=1
+      - URLSHELF_DB_PATH=/data/db.sqlite3
     healthcheck:
       test:
         ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://localhost:9432/')"]

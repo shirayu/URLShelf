@@ -1,0 +1,12 @@
+---
+version: '3'
+
+includes:
+  vars:
+    taskfile: ./Taskfile.vars.yml
+
+tasks:
+  install:
+    desc: "Install dependencies with uv"
+    cmds:
+      - '{{.UV}} sync --dev'

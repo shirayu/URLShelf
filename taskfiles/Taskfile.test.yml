@@ -1,0 +1,13 @@
+---
+version: '3'
+
+includes:
+  vars:
+    taskfile: ./Taskfile.vars.yml
+
+tasks:
+  all:
+    deps:
+      - task: :build:install
+    cmds:
+      - '{{.UV_RUN}} pytest'

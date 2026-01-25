@@ -1,0 +1,8 @@
+---
+version: '3'
+
+vars:
+  UV: UV_CACHE_DIR=/tmp/uv-cache uv
+  UV_RUN: UV_CACHE_DIR=/tmp/uv-cache uv run
+  RUFF: '{{.UV_RUN}} ruff'
+  PYRIGHT: '{{.UV_RUN}} pyright'

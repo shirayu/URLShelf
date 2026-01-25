@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>URLShelf | Manage Pages</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f4efe9;
+        --ink: #1f1a17;
+        --muted: #6c5f55;
+        --accent: #c25b3f;
+        --accent-2: #2d6a73;
+        --card: #fff7f0;
+        --border: #e2d4c7;
+        --shadow: 0 12px 30px rgba(31, 26, 23, 0.15);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: "Alegreya Sans", "Segoe UI", "Noto Sans", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 15% 5%, #f9e7d6 0, transparent 50%),
+          radial-gradient(circle at 90% 0%, #dfe9e7 0, transparent 45%),
+          var(--bg);
+        min-height: 100vh;
+      }
+      .page {
+        max-width: 980px;
+        margin: 40px auto 64px;
+        padding: 0 20px;
+      }
+      header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px 20px;
+        margin-bottom: 22px;
+      }
+      h1 {
+        font-family: "Playfair Display", "Noto Serif", serif;
+        font-size: clamp(2rem, 3vw, 2.7rem);
+        margin: 0;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--ink);
+        background: #fff;
+        font-weight: 600;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 18px rgba(31, 26, 23, 0.12);
+        border-color: #f0b49c;
+      }
+      .panel {
+        background: #fff;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        padding: 18px;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 10px;
+        border-bottom: 1px dashed #ead9cc;
+      }
+      .row:last-child { border-bottom: none; }
+      .meta {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .meta a {
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 700;
+        word-break: break-all;
+      }
+      .meta span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .row-actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .link-btn {
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: #fffaf5;
+        text-decoration: none;
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .link-btn:hover { border-color: var(--accent); }
+      .danger {
+        border-color: #f2b6a1;
+        background: #fff1ea;
+        color: #8a2e1c;
+      }
+      form { margin: 0; }
+      @media (max-width: 720px) {
+        .row { grid-template-columns: 1fr; align-items: flex-start; }
+        .row-actions { justify-content: flex-start; flex-wrap: wrap; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div>
+          <h1>Manage Pages</h1>
+          <div style="color: var(--muted);">Edit, delete, and review saved URLs.</div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="/">New Save</a>
+        </div>
+      </header>
+
+      <section class="panel">
+        {% if rows %}
+          {% for row in rows %}
+            <div class="row">
+              <div class="meta">
+                <a href="/page/{{ row['scheme'] }}/{{ row['host'] }}{{ row['path'] }}">{{ row['url'] }}</a>
+                <span>Updated: {{ row['updated_at'] }}</span>
+              </div>
+              <div class="row-actions">
+                <a class="link-btn" href="/edit/{{ row['scheme'] }}/{{ row['host'] }}{{ row['path'] }}">Edit</a>
+                <form method="post" action="/delete/{{ row['scheme'] }}/{{ row['host'] }}{{ row['path'] }}" onsubmit="return confirm('Delete this page?');">
+                  <button class="link-btn danger" type="submit">Delete</button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p style="margin: 0; color: var(--muted);">No pages saved yet.</p>
+        {% endif %}
+      </section>
+    </div>
+  </body>
+</html>

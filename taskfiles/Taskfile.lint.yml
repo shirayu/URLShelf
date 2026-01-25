@@ -1,0 +1,29 @@
+---
+version: '3'
+
+includes:
+  vars:
+    taskfile: ./Taskfile.vars.yml
+
+tasks:
+  all:
+    deps:
+      - task: :build:install
+      - ruff_format_check
+      - ruff_check
+      - pyright
+
+  ruff_format_check:
+    desc: "Check formatting with ruff"
+    cmds:
+      - '{{.RUFF}} format --respect-gitignore --check'
+
+  ruff_check:
+    desc: "Lint Python code with ruff"
+    cmds:
+      - '{{.RUFF}} check --respect-gitignore'
+
+  pyright:
+    desc: "Type check with pyright"
+    cmds:
+      - '{{.PYRIGHT}}'

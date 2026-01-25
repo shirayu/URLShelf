@@ -1,0 +1,49 @@
+---
+version: '3'
+
+dotenv: ['.env']
+
+includes:
+  vars:
+    taskfile: ./taskfiles/Taskfile.vars.yml
+  build:
+    taskfile: ./taskfiles/Taskfile.build.yml
+  format:
+    taskfile: ./taskfiles/Taskfile.format.yml
+  lint:
+    taskfile: ./taskfiles/Taskfile.lint.yml
+  test:
+    taskfile: ./taskfiles/Taskfile.test.yml
+
+tasks:
+  default:
+    cmds:
+      - task: format:all
+      - task: lint:all
+      - task: test:all
+
+  format:
+    cmds:
+      - task: format:all
+
+  lint:
+    cmds:
+      - task: lint:all
+
+  test:
+    cmds:
+      - task: test:all
+
+  install:
+    cmds:
+      - task: build:install
+
+  serve:
+    desc: "Start server"
+    vars:
+      HOST: 0.0.0.0
+      PORT: 9432
+      DB_PATH: ./data/db.sqlite3
+    cmds:
+      - task: build:install
+      - '{{.UV_RUN}} python app.py --host {{.HOST}} --port {{.PORT}} --db-path {{.DB_PATH}}'

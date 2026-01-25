@@ -6,8 +6,9 @@ Production-ready Docker container for URLShelf.
 
 ### GitHub Container Registry (GHCR)
 
-This repo includes a GitHub Actions workflow to build and publish:
+This repo includes a GitHub Actions workflow to build and publish (manual only):
 
+- Trigger: GitHub Actions → **Build and Publish Container (GHCR)** → Run workflow
 - Image: `ghcr.io/shirayu/urlshelf`
 - Tags: `latest` (default branch), `sha`, and git tag (`v*`)
 

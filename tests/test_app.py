@@ -13,7 +13,7 @@ from app import app, init_db  # noqa: E402
 
 def make_client(tmp_path: Path) -> Any:
     db_path = tmp_path / "test.sqlite3"
-    app.config.update(DB_PATH=db_path, TESTING=True)
+    app.config.update(URLSHELF_DB_PATH=db_path, TESTING=True)
     init_db(db_path)
     return app.test_client()
 

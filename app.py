@@ -54,7 +54,7 @@ ALLOWED_PROTOCOLS = sorted({*bleach.sanitizer.ALLOWED_PROTOCOLS, "data"})
 
 app = Flask(__name__, static_folder="assets", static_url_path="/static")
 # Default DB path for WSGI servers (e.g., gunicorn). Can be overridden by env.
-app.config["DB_PATH"] = Path(os.getenv("URLSHELF_DB_PATH", str(DEFAULT_DB_PATH)))
+app.config["URLSHELF_DB_PATH"] = Path(os.getenv("URLSHELF_DB_PATH", str(DEFAULT_DB_PATH)))
 # Allow larger form payloads to avoid Werkzeug capacity errors.
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
 app.config["MAX_FORM_MEMORY_SIZE"] = 50 * 1024 * 1024
@@ -155,12 +155,12 @@ def init_db(db_path: Path) -> None:
 
 
 # Ensure DB is initialized for WSGI startup.
-init_db(app.config["DB_PATH"])
+init_db(app.config["URLSHELF_DB_PATH"])
 
 
 @app.route("/", methods=["GET"])
 def index() -> ResponseReturnValue:
-    with get_db(app.config["DB_PATH"]) as conn:
+    with get_db(app.config["URLSHELF_DB_PATH"]) as conn:
         rows = conn.execute(
             "SELECT url, scheme, host, path, updated_at FROM pages ORDER BY updated_at DESC LIMIT 20"
         ).fetchall()
@@ -192,7 +192,7 @@ def save() -> ResponseReturnValue:
 
     now = utc_now_iso()
 
-    with get_db(app.config["DB_PATH"]) as conn:
+    with get_db(app.config["URLSHELF_DB_PATH"]) as conn:
         conn.execute(
             """
             INSERT INTO pages (url, scheme, host, path, content_raw, content_type, content_html, created_at, updated_at)
@@ -218,7 +218,7 @@ def view_page(scheme: str, host: str, page_path: str) -> ResponseReturnValue:
     normalized_scheme = scheme.lower()
     normalized_host = host.lower()
     normalized_path = normalize_route_path(page_path)
-    with get_db(app.config["DB_PATH"]) as conn:
+    with get_db(app.config["URLSHELF_DB_PATH"]) as conn:
         row = conn.execute(
             "SELECT url, content_html, content_raw, content_type FROM pages WHERE scheme = ? AND host = ? AND path = ?",
             (normalized_scheme, normalized_host, normalized_path),
@@ -239,7 +239,7 @@ def view_page(scheme: str, host: str, page_path: str) -> ResponseReturnValue:
 
 @app.route("/manage", methods=["GET"])
 def manage_pages() -> ResponseReturnValue:
-    with get_db(app.config["DB_PATH"]) as conn:
+    with get_db(app.config["URLSHELF_DB_PATH"]) as conn:
         rows = conn.execute("SELECT url, scheme, host, path, updated_at FROM pages ORDER BY updated_at DESC").fetchall()
     return render_template("manage.html", rows=rows)
 
@@ -250,7 +250,7 @@ def edit_page(scheme: str, host: str, page_path: str) -> ResponseReturnValue:
     normalized_scheme = scheme.lower()
     normalized_host = host.lower()
     normalized_path = normalize_route_path(page_path)
-    with get_db(app.config["DB_PATH"]) as conn:
+    with get_db(app.config["URLSHELF_DB_PATH"]) as conn:
         row = conn.execute(
             """
             SELECT url, scheme, host, path, content_raw, content_type, updated_at
@@ -303,7 +303,7 @@ def update_page() -> ResponseReturnValue:
 
     now = utc_now_iso()
 
-    with get_db(app.config["DB_PATH"]) as conn:
+    with get_db(app.config["URLSHELF_DB_PATH"]) as conn:
         conn.execute(
             """
             INSERT INTO pages (url, scheme, host, path, content_raw, content_type, content_html, created_at, updated_at)
@@ -334,7 +334,7 @@ def delete_page(scheme: str, host: str, page_path: str) -> ResponseReturnValue:
     normalized_scheme = scheme.lower()
     normalized_host = host.lower()
     normalized_path = normalize_route_path(page_path)
-    with get_db(app.config["DB_PATH"]) as conn:
+    with get_db(app.config["URLSHELF_DB_PATH"]) as conn:
         conn.execute(
             "DELETE FROM pages WHERE scheme = ? AND host = ? AND path = ?",
             (normalized_scheme, normalized_host, normalized_path),
@@ -353,7 +353,7 @@ def parse_args() -> tuple[str, int, Path]:
 
 def main() -> None:
     host, port, db_path = parse_args()
-    app.config["DB_PATH"] = db_path
+    app.config["URLSHELF_DB_PATH"] = db_path
     init_db(db_path)
     app.run(host=host, port=port, debug=True)
 

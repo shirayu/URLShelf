@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+env:
+  COLUMNS: 120
+
+permissions:
+  pull-requests: write
+  contents: read
+  actions: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - &checkout
+        uses: actions/checkout@v4
+
+      - &setup_python
+        name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - &setup_node
+        name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - &setup_pnpm
+        name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: "10.5.2"
+          run_install: false
+
+      - &setup_task
+        name: Setup task
+        uses: go-task/setup-task@v1
+
+      - &setup_uv
+        name: Setup uv
+        uses: astral-sh/setup-uv@v5
+
+      - &uv_cache
+        name: Setup uv cache
+        uses: actions/cache@v5
+        with:
+          path: ~/.cache/uv
+          key: ${{ runner.os }}-uv-${{ hashFiles('**/pyproject.toml', '**/uv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-uv-
+
+      - &pnpm_cache
+        name: Setup pnpm cache
+        uses: actions/cache@v5
+        with:
+          path: ~/.local/share/pnpm/store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - &uv_sync
+        name: Sync Python dependencies
+        run: task -p build:install
+
+      - &pnpm_install
+        name: Install Node dependencies
+        run: pnpm install
+
+      - name: Run lint suite
+        run: task -p lint
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [lint]
+    steps:
+      - *checkout
+      - *setup_python
+      - *setup_node
+      - *setup_pnpm
+      - *setup_task
+      - *setup_uv
+      - *uv_cache
+      - *pnpm_cache
+      - *uv_sync
+      - *pnpm_install
+      - name: Run tests
+        run: task -p test

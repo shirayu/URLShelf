@@ -1,0 +1,16 @@
+{
+  "name": "urlshelf",
+  "version": "1.0.0",
+  "description": "Minimal web app to save a URL with Markdown/HTML content",
+  "license": "AGPL-3.0",
+  "author": "",
+  "main": "",
+  "devDependencies": {
+    "markdownlint-cli": "^0.47.0",
+    "pyright": "^1.1.408"
+  },
+  "engines": {
+    "npm": "Use pnpm instead of npm!"
+  },
+  "packageManager": "pnpm@10.5.2"
+}

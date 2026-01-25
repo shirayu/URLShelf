@@ -1,0 +1,20 @@
+[Unit]
+Description=URLShelf
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=ghcr.io/shirayu/urlshelf:latest
+AutoUpdate=registry
+ContainerName=urlshelf
+HostName=urlshelf
+PublishPort=9432:9432
+Volume=/opt/data/urlshelf:/data:Z
+UserNS=keep-id
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target default.target

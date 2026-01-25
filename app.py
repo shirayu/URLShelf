@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import sqlite3
 from argparse import ArgumentParser
 from datetime import UTC, datetime
@@ -52,6 +53,8 @@ ALLOWED_ATTRIBUTES = {
 ALLOWED_PROTOCOLS = sorted({*bleach.sanitizer.ALLOWED_PROTOCOLS, "data"})
 
 app = Flask(__name__)
+# Default DB path for WSGI servers (e.g., gunicorn). Can be overridden by env.
+app.config["DB_PATH"] = Path(os.getenv("URLSHELF_DB_PATH", str(DEFAULT_DB_PATH)))
 # Allow larger form payloads to avoid Werkzeug capacity errors.
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
 app.config["MAX_FORM_MEMORY_SIZE"] = 50 * 1024 * 1024
@@ -149,6 +152,10 @@ def init_db(db_path: Path) -> None:
                 conn.execute("UPDATE pages SET scheme = ? WHERE id = ?", (scheme, row["id"]))
         conn.execute("DROP INDEX IF EXISTS idx_pages_host_path")
         conn.execute("CREATE UNIQUE INDEX IF NOT EXISTS idx_pages_scheme_host_path ON pages(scheme, host, path)")
+
+
+# Ensure DB is initialized for WSGI startup.
+init_db(app.config["DB_PATH"])
 
 
 @app.route("/", methods=["GET"])

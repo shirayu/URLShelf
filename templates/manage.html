@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>URLShelf | Manage Pages</title>
+    <title>URLShelf | {{ MANAGE_PAGES_LABEL }}</title>
     <link rel="icon" type="image/svg+xml" href="/static/logo.svg" />
     <style>
       :root {
@@ -129,6 +129,10 @@
         background: #fff1ea;
         color: #8a2e1c;
       }
+      .empty {
+        margin: 0;
+        color: var(--muted);
+      }
       form { margin: 0; }
       @media (max-width: 720px) {
         .row { grid-template-columns: 1fr; align-items: flex-start; }
@@ -142,7 +146,7 @@
         <div class="brand">
           <img class="logo" src="/static/logo.svg" alt="URLShelf logo" />
           <div>
-            <h1>Manage Pages</h1>
+            <h1>{{ MANAGE_PAGES_LABEL }}</h1>
             <div style="color: var(--muted);">Edit, delete, and review saved URLs.</div>
           </div>
         </div>
@@ -152,24 +156,7 @@
       </header>
 
       <section class="panel">
-        {% if rows %}
-          {% for row in rows %}
-            <div class="row">
-              <div class="meta">
-                <a href="/page/{{ row['scheme'] }}/{{ row['host'] }}{{ row['path'] }}">{{ row['url'] }}</a>
-                <span>Updated: {{ row['updated_at'] }}</span>
-              </div>
-              <div class="row-actions">
-                <a class="link-btn" href="/edit/{{ row['scheme'] }}/{{ row['host'] }}{{ row['path'] }}">Edit</a>
-                <form method="post" action="/delete/{{ row['scheme'] }}/{{ row['host'] }}{{ row['path'] }}" onsubmit="return confirm('Delete this page?');">
-                  <button class="link-btn danger" type="submit">Delete</button>
-                </form>
-              </div>
-            </div>
-          {% endfor %}
-        {% else %}
-          <p style="margin: 0; color: var(--muted);">No pages saved yet.</p>
-        {% endif %}
+        {% include "_page_rows.html" %}
       </section>
     </div>
   </body>

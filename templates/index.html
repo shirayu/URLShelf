@@ -187,16 +187,76 @@
         margin: 0 0 12px;
         font-family: "Playfair Display", "Noto Serif JP", serif;
       }
-      .list a {
-        display: block;
-        padding: 10px 12px;
-        border-radius: 12px;
-        text-decoration: none;
+      .list .row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px;
+        align-items: center;
+        padding: 12px 10px;
+        border-bottom: 1px dashed #ead9cc;
+      }
+      .list .row:last-child { border-bottom: none; }
+      .list .meta {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .list .meta a {
         color: var(--ink);
+        text-decoration: none;
+        font-weight: 700;
+        word-break: break-all;
+        padding: 6px 8px;
+        border-radius: 10px;
         border: 1px solid transparent;
         transition: background 0.2s ease, border-color 0.2s ease;
       }
-      .list a:hover {
+      .list .meta a:hover {
+        background: #fef3ea;
+        border-color: #f3c9b6;
+      }
+      .list .meta span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+      .list .row-actions {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .list .link-btn {
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: #fffaf5;
+        text-decoration: none;
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .list .link-btn:hover { border-color: var(--accent); }
+      .list .danger {
+        border-color: #f2b6a1;
+        background: #fff1ea;
+        color: #8a2e1c;
+      }
+      .list form { margin: 0; }
+      .list .empty {
+        margin: 0;
+        color: var(--muted);
+      }
+      .list-footer {
+        margin-top: 12px;
+      }
+      .list-footer a {
+        color: var(--ink);
+        font-weight: 600;
+        text-decoration: none;
+        border: 1px solid transparent;
+        padding: 10px 12px;
+        border-radius: 12px;
+        display: inline-block;
+      }
+      .list-footer a:hover {
         background: #fef3ea;
         border-color: #f3c9b6;
       }
@@ -204,6 +264,8 @@
         .panel { padding: 20px; }
         .actions { justify-content: stretch; }
         button[type="submit"] { width: 100%; }
+        .list .row { grid-template-columns: 1fr; align-items: flex-start; }
+        .list .row-actions { justify-content: flex-start; flex-wrap: wrap; }
       }
     </style>
   </head>
@@ -218,7 +280,7 @@
           </div>
         </div>
         <div class="header-actions">
-          <a href="/manage">Manage Pages</a>
+          <a href="/manage">{{ MANAGE_PAGES_LABEL }}</a>
         </div>
       </header>
 
@@ -258,14 +320,11 @@
       </section>
 
       <div class="list">
-        <h2>Recent Saves</h2>
-        {% if rows %}
-          {% for row in rows %}
-            <a href="/page/{{ row['scheme'] }}/{{ row['host'] }}{{ row['path'] }}">{{ row['url'] }}</a>
-          {% endfor %}
-        {% else %}
-          <p>No entries yet.</p>
-        {% endif %}
+        <h2>{{ MANAGE_PAGES_LABEL }}</h2>
+        {% include "_page_rows.html" %}
+        <div class="list-footer">
+          <a href="/manage">{{ MANAGE_PAGES_LABEL }}</a>
+        </div>
       </div>
     </div>
   </body>

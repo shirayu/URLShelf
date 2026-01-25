@@ -1,0 +1,18 @@
+{% if rows %}
+  {% for row in rows %}
+    <div class="row">
+      <div class="meta">
+        <a href="/page/{{ row['scheme'] }}/{{ row['host'] }}{{ row['path'] }}">{{ row['url'] }}</a>
+        <span>Updated: {{ row['updated_at'] }}</span>
+      </div>
+      <div class="row-actions">
+        <a class="link-btn" href="/edit/{{ row['scheme'] }}/{{ row['host'] }}{{ row['path'] }}">Edit</a>
+        <form method="post" action="/delete/{{ row['scheme'] }}/{{ row['host'] }}{{ row['path'] }}" onsubmit="return confirm('Delete this page?');">
+          <button class="link-btn danger" type="submit">Delete</button>
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+{% else %}
+  <p class="empty">No pages saved yet.</p>
+{% endif %}

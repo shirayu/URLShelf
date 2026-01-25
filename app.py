@@ -55,6 +55,8 @@ ALLOWED_PROTOCOLS = sorted({*bleach.sanitizer.ALLOWED_PROTOCOLS, "data"})
 app = Flask(__name__, static_folder="assets", static_url_path="/static")
 # Default DB path for WSGI servers (e.g., gunicorn). Can be overridden by env.
 app.config["URLSHELF_DB_PATH"] = Path(os.getenv("URLSHELF_DB_PATH", str(DEFAULT_DB_PATH)))
+# Copy strings shared across templates.
+app.add_template_global("Manage Pages", name="MANAGE_PAGES_LABEL")
 # Allow larger form payloads to avoid Werkzeug capacity errors.
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024
 app.config["MAX_FORM_MEMORY_SIZE"] = 50 * 1024 * 1024
@@ -162,7 +164,7 @@ init_db(app.config["URLSHELF_DB_PATH"])
 def index() -> ResponseReturnValue:
     with get_db(app.config["URLSHELF_DB_PATH"]) as conn:
         rows = conn.execute(
-            "SELECT url, scheme, host, path, updated_at FROM pages ORDER BY updated_at DESC LIMIT 20"
+            "SELECT url, scheme, host, path, updated_at FROM pages ORDER BY updated_at DESC LIMIT 5"
         ).fetchall()
     return render_template("index.html", rows=rows)
 

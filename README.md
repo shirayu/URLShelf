@@ -14,6 +14,12 @@ Custom host/port:
 task serve HOST=127.0.0.1 PORT=9432
 ```
 
+Or via environment variables:
+
+```bash
+HOST=127.0.0.1 PORT=9432 task serve
+```
+
 Custom DB path:
 
 ```bash

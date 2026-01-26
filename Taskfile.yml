@@ -41,9 +41,9 @@ tasks:
   serve:
     desc: "Start server"
     vars:
-      HOST: 0.0.0.0
-      PORT: 9432
-      URLSHELF_DB_PATH: ./data/db.sqlite3
+      HOST: '{{.HOST | default .ENV.HOST | default "0.0.0.0"}}'
+      PORT: '{{.PORT | default .ENV.PORT | default "9432"}}'
+      URLSHELF_DB_PATH: '{{.URLSHELF_DB_PATH | default .ENV.URLSHELF_DB_PATH | default "./data/db.sqlite3"}}'
     cmds:
       - task: build:install
       - 'URLSHELF_DB_PATH={{.URLSHELF_DB_PATH}} {{.UV_RUN}} python app.py --host {{.HOST}} --port {{.PORT}}'

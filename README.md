@@ -2,6 +2,8 @@
 
 URLShelf is a minimal web app that saves a URL plus Markdown/HTML content and serves it at `/page/<host>/<path>` as HTML.
 
+![Screenshot](screenshot.avif)
+
 ## Run
 
 ```bash

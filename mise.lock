@@ -1,6 +1,6 @@
 [[tools.hadolint]]
 version = "2.14.0"
-backend = "aqua:hadolint/hadolint"
+backend = "ubi:hadolint/hadolint"
 
 [[tools.node]]
 version = "24.14.0"

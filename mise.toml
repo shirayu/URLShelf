@@ -2,7 +2,7 @@
 hadolint = "latest"
 node = "lts"
 pnpm = "latest"
-python = "3.13"
+python = "3.13.12"
 task = "latest"
 typos = "latest"
 uv = "latest"

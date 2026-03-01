@@ -27,7 +27,7 @@ tasks:
   markdownlint:
     desc: "Lint Markdown files with markdownlint"
     cmds:
-      - '{{.PNPM}} exec markdownlint "**/*.md" --ignore "node_modules/**" --ignore ".venv/**"'
+      - '{{.PNPM}} exec markdownlint-cli2 "**/*.md"'
 
   pyright:
     desc: "Type check with pyright"

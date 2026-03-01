@@ -1,0 +1,11 @@
+{
+  "config": {
+    "MD007": {
+      "indent": 4
+    },
+    "line-length": false,
+    "no-inline-html": false,
+    "MD026": false
+  },
+  "ignores": ["node_modules", ".venv", "tmp"]
+}

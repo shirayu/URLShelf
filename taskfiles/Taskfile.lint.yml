@@ -39,7 +39,7 @@ tasks:
   markdownlint:
     desc: "Lint Markdown files with markdownlint"
     cmds:
-      - '{{.PNPM}} exec markdownlint-cli2 .'
+      - '{{.PNPM}} exec markdownlint-cli2'
 
   pyright:
     desc: "Type check with pyright"

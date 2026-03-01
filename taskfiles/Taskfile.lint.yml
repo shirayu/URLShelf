@@ -9,10 +9,22 @@ tasks:
   all:
     deps:
       - task: :build:install
+      - hadolint
+      - typos
       - ruff_format_check
       - ruff_check
       - markdownlint
       - pyright
+
+  hadolint:
+    desc: "Lint Dockerfile with hadolint"
+    cmds:
+      - '{{.HADOLINT}} container/prod/Dockerfile'
+
+  typos:
+    desc: "Spell-check source files with typos"
+    cmds:
+      - '{{.TYPOS}}'
 
   ruff_format_check:
     desc: "Check formatting with ruff"

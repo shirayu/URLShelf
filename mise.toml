@@ -1,6 +1,11 @@
 [tools]
-python = "3.13"
-uv = "latest"
+hadolint = "latest"
 node = "lts"
 pnpm = "latest"
+python = "3.13"
 task = "latest"
+typos = "latest"
+uv = "latest"
+
+[settings]
+lockfile = true

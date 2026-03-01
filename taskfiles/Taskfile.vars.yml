@@ -2,6 +2,8 @@
 version: '3'
 
 vars:
+  HADOLINT: hadolint
+  TYPOS: typos
   UV: uv
   UV_RUN: uv run
   RUFF: '{{.UV_RUN}} ruff'

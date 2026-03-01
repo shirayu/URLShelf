@@ -28,7 +28,7 @@ jobs:
 
       - &setup_mise
         name: Setup mise
-        uses: jdx/mise-action@v2
+        uses: jdx/mise-action@v3
 
       - &uv_cache
         name: Setup uv cache

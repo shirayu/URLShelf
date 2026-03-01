@@ -1,0 +1,6 @@
+[tools]
+python = "3.13"
+uv = "latest"
+node = "lts"
+pnpm = "latest"
+task = "latest"

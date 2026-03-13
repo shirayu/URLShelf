@@ -4,6 +4,9 @@
 version = "2.14.0"
 backend = "ubi:hadolint/hadolint"
 
+[tools.hadolint."platforms.linux-x64-hadolint"]
+checksum = "blake3:caca77767db81a741c4cad24c12dd1003e6e07a572f3b3486a6a07d63c191abc"
+
 [[tools.node]]
 version = "24.14.0"
 backend = "core:node"
@@ -104,6 +107,9 @@ url = "https://github.com/astral-sh/python-build-standalone/releases/download/20
 version = "3.49.1"
 backend = "ubi:go-task/task"
 
+[tools.task."platforms.linux-x64-task"]
+checksum = "blake3:8d6def2a4fc0fbc4a72214601804e5204ac6e079564db3a126cfb523974075a9"
+
 [[tools.typos]]
 version = "1.44.0"
 backend = "aqua:crate-ci/typos"
@@ -137,33 +143,33 @@ checksum = "sha256:afd85c8f3c5c925ee7452389acdf70b048d8c6eae5e52a581e63a7d1b7655
 url = "https://github.com/crate-ci/typos/releases/download/v1.44.0/typos-v1.44.0-x86_64-pc-windows-msvc.zip"
 
 [[tools.uv]]
-version = "0.10.9"
+version = "0.10.10"
 backend = "aqua:astral-sh/uv"
 
 [tools.uv."platforms.linux-arm64"]
-checksum = "sha256:05b0d3087e913ebe11756365a90dd47c05d6728752fdbe129ad4c3ccd769826d"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:d08c08b82cdcaf2bd3d928ffe844d3558dda53f90066db6ef9174157cc763252"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-aarch64-unknown-linux-musl.tar.gz"
 
 [tools.uv."platforms.linux-arm64-musl"]
-checksum = "sha256:05b0d3087e913ebe11756365a90dd47c05d6728752fdbe129ad4c3ccd769826d"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:d08c08b82cdcaf2bd3d928ffe844d3558dda53f90066db6ef9174157cc763252"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-aarch64-unknown-linux-musl.tar.gz"
 
 [tools.uv."platforms.linux-x64"]
-checksum = "sha256:433e56874739e92c7cfd661ba9e5f287b376ca612c08c8194a41a98a13158aea"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:74544e8755fbc27559e22e29fd561bdc48f91b8bd8323e760a1130f32433bea4"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-unknown-linux-musl.tar.gz"
 
 [tools.uv."platforms.linux-x64-musl"]
-checksum = "sha256:433e56874739e92c7cfd661ba9e5f287b376ca612c08c8194a41a98a13158aea"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:74544e8755fbc27559e22e29fd561bdc48f91b8bd8323e760a1130f32433bea4"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-unknown-linux-musl.tar.gz"
 
 [tools.uv."platforms.macos-arm64"]
-checksum = "sha256:a92f61e9ac9b0f29668c15f56152e4a60143fca148ff5bfadb86718472c3f376"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-aarch64-apple-darwin.tar.gz"
+checksum = "sha256:8a09f0ef51ee7f7170731b4cb8bde5bf9ba6da5304f49a7df6cdab42a1f37b5d"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-aarch64-apple-darwin.tar.gz"
 
 [tools.uv."platforms.macos-x64"]
-checksum = "sha256:9cc2de7d195fa157f98b306a8a1cb151ded93f488939b93363cebc8b9d598c28"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-apple-darwin.tar.gz"
+checksum = "sha256:dd18420591d625f9b4ca2b57a7a6fe3cce43910f02e02d90e47a4101428de14a"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-apple-darwin.tar.gz"
 
 [tools.uv."platforms.windows-x64"]
-checksum = "sha256:f58dc40896000229db7c52b8bdd931394040ef2ad59abd1eda841f6d70b13d7a"
-url = "https://github.com/astral-sh/uv/releases/download/0.10.9/uv-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:d31a30f1dfb96e630a08d5a9b3f3f551254b7ed6e9b7e495f46a4232661c7252"
+url = "https://github.com/astral-sh/uv/releases/download/0.10.10/uv-x86_64-pc-windows-msvc.zip"

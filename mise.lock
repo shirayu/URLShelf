@@ -37,38 +37,6 @@ checksum = "sha256:313fa40c0d7b18575821de8cb17483031fe07d95de5994f6f435f3b345f85
 url = "https://nodejs.org/dist/v24.14.0/node-v24.14.0-win-x64.zip"
 
 [[tools.pnpm]]
-version = "10.30.3"
-backend = "aqua:pnpm/pnpm"
-
-[tools.pnpm."platforms.linux-arm64"]
-checksum = "sha256:9488f48d6967bfa8f5ebc5c077aae297d2fe25287697b4c8edf991ff945d8af7"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.30.3/pnpm-linux-arm64"
-
-[tools.pnpm."platforms.linux-arm64-musl"]
-checksum = "sha256:9488f48d6967bfa8f5ebc5c077aae297d2fe25287697b4c8edf991ff945d8af7"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.30.3/pnpm-linux-arm64"
-
-[tools.pnpm."platforms.linux-x64"]
-checksum = "sha256:5dc971e801610471b5cd6729ba289531be6695bd50d5e833fe22b18896b13a06"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.30.3/pnpm-linux-x64"
-
-[tools.pnpm."platforms.linux-x64-musl"]
-checksum = "sha256:5dc971e801610471b5cd6729ba289531be6695bd50d5e833fe22b18896b13a06"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.30.3/pnpm-linux-x64"
-
-[tools.pnpm."platforms.macos-arm64"]
-checksum = "sha256:ccfb6e54fe29d13715e2fe418ef0374cde5a7f68b95f5ed5da5f564886af9d17"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.30.3/pnpm-macos-arm64"
-
-[tools.pnpm."platforms.macos-x64"]
-checksum = "sha256:d9be0fd3989c09f5abf7e52f10d8d0294f757af61bbbd59727d607c85205a788"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.30.3/pnpm-macos-x64"
-
-[tools.pnpm."platforms.windows-x64"]
-checksum = "sha256:de8337a864056472542b951ab23ad54149cc63127bb2faf3175b7902b764f188"
-url = "https://github.com/pnpm/pnpm/releases/download/v10.30.3/pnpm-win-x64.exe"
-
-[[tools.pnpm]]
 version = "10.31.0"
 backend = "aqua:pnpm/pnpm"
 
@@ -133,12 +101,11 @@ checksum = "sha256:eb1e212b97b001efc1281bb01fd26ca1ecdfe9ef2875b52c58d39e9719ab7
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260303/cpython-3.13.12+20260303-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
 
 [[tools.task]]
-version = "3.48.0"
-backend = "ubi:go-task/task"
-
-[[tools.task]]
 version = "3.49.0"
 backend = "ubi:go-task/task"
+
+[tools.task."platforms.linux-x64-task"]
+checksum = "blake3:b9ca22b4ec0d5f0edee24f9121d150de5b29668505d959862b99f3ae10583c1f"
 
 [[tools.typos]]
 version = "1.44.0"

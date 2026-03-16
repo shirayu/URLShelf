@@ -16,7 +16,6 @@ env:
   MISE_LOCKED: "1"
 
 permissions:
-  pull-requests: write
   contents: read
   actions: read
 
@@ -26,6 +25,8 @@ jobs:
     steps:
       - &checkout
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+        with:
+          persist-credentials: false
 
       - &setup_mise
         name: Setup mise

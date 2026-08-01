@@ -20,11 +20,11 @@ COPY templates ./templates
 COPY assets ./assets
 
 # Create data dir and non-root user
-RUN useradd -ms /bin/bash appuser \
+RUN useradd -u 1000 -ms /bin/bash appuser \
     && mkdir -p /data \
     && chown -R appuser:appuser /app /data
 
-USER appuser
+USER 1000
 
 ENV PATH="/opt/venv/bin:$PATH" \
     PYTHONUNBUFFERED=1 \

@@ -5,7 +5,7 @@ import sqlite3
 from argparse import ArgumentParser
 from datetime import UTC, datetime
 from pathlib import Path
-from urllib.parse import quote, urlparse
+from urllib.parse import unquote, urlparse
 
 import bleach
 import markdown
@@ -75,8 +75,7 @@ def normalize_path(path: str) -> str:
 
 
 def normalize_route_path(path: str) -> str:
-    encoded = quote(path, safe="/")
-    return normalize_path("/" + encoded)
+    return normalize_path("/" + path)
 
 
 def parse_target_url(raw_url: str) -> tuple[str, str, str, str]:
@@ -87,7 +86,7 @@ def parse_target_url(raw_url: str) -> tuple[str, str, str, str]:
         raise ValueError("URL host is required")
     scheme = parsed.scheme.lower()
     host = parsed.netloc.lower()
-    path = normalize_path(parsed.path)
+    path = normalize_path(unquote(parsed.path))
     return parsed.geturl(), scheme, host, path
 
 

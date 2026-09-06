@@ -246,6 +246,19 @@ def test_url_with_encoded_path(tmp_path: Path):
     assert page.status_code == 200
 
 
+def test_url_with_at_sign_in_path(tmp_path: Path):
+    client = make_client(tmp_path)
+
+    url = "https://example.com/@username"
+    response = save_page(client, url, "profile", "markdown")
+    assert response.status_code == 302
+    location = response.headers.get("Location", "")
+    assert location.endswith("/page/https/example.com/@username")
+
+    page = client.get(location)
+    assert page.status_code == 200
+
+
 def test_html_is_sanitized_on_save(tmp_path: Path):
     client = make_client(tmp_path)
 

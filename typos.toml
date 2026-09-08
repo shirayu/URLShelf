@@ -15,10 +15,11 @@ guroup = "group"
 
 [files]
 extend-exclude = [
-  'package*.json',
-  '*.csv',
-  'tmp',
-  'data',
-  'build',
-  '*.yml',
+  "package*.json",
+  "*.csv",
+  "tmp",
+  "data",
+  "build",
+  "*.yml",
+  "_tmp_*",
 ]
